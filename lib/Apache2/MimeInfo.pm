@@ -18,8 +18,16 @@ use APR::Table   ();
 use APR::Bucket  ();
 use APR::Brigade ();
 
-use IO::Scalar            ();
-use File::MimeInfo::Magic ();
+use IO::Scalar ();
+
+BEGIN {
+    # do this because holy god File::BaseDir is annoying
+    use Apache2::ServerUtil ();
+    local $ENV{HOME} = Apache2::ServerUtil::server_root();
+
+    # shut UPPP
+    require File::MimeInfo::Magic;
+}
 
 =head1 NAME
 
@@ -27,11 +35,11 @@ Apache2::MimeInfo - Content-Type header informed by File::MimeInfo
 
 =head1 VERSION
 
-Version 0.01
+Version 0.02
 
 =cut
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 
 =head1 SYNOPSIS
