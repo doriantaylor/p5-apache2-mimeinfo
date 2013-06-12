@@ -22,8 +22,12 @@ use IO::Scalar ();
 
 BEGIN {
     # do this because holy god File::BaseDir is annoying
-    use Apache2::ServerUtil ();
-    local $ENV{HOME} = Apache2::ServerUtil::server_root();
+    # no need to local
+    #local $ENV{HOME};
+    if ($ENV{MOD_PERL}) {
+        use Apache2::ServerUtil ();
+        $ENV{HOME} ||= Apache2::ServerUtil::server_root();
+    }
 
     # shut UPPP
     require File::MimeInfo::Magic;
