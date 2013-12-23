@@ -80,6 +80,7 @@ sub handler : FilterRequestHandler {
                 $r->log->debug("Leaving more-specific type alone");
             }
             elsif ($SKIP{$mt}) {
+                # one day we can actually inspect the uncompressed contents.
                 $r->log->debug("Not replacing $type with $mt.");
             }
             else {
