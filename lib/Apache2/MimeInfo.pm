@@ -72,11 +72,12 @@ special contents. Its MIME type is this:
 The detector, however, will perceive C<application/zip>, which is an
 ancestor type. If whatever content handler producing the document
 asserts the correct type, then this module will do nothing. If,
-however, it returns something like C<application/octet-stream>, which
-is even more generic than C<application/zip>, this module will replace
-the C<Content-Type> header with C<application/zip>. It will likewise
-replace the C<Content-Type> header if it is missing altogether, or if
-it asserts a type that is inconsitent with the one which was detected.
+however, the header says something like C<application/octet-stream>,
+which is even more generic than C<application/zip>, this module will
+replace the C<Content-Type> header with C<application/zip>. This
+module will likewise replace the C<Content-Type> header if it is
+missing altogether, or if it asserts a type that is inconsitent with
+the one which was detected.
 
 If you aren't familiar with
 L<shared-mime-info|http://freedesktop.org/wiki/Software/shared-mime-info/>,
